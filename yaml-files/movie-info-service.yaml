@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: movie-info-service
+  labels:
+    app: movie-info-service
+spec:
+  selector:
+    matchLabels:
+      app: movie-info-service
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: movie-info-service
+    spec:
+      containers:
+        - name: movie-info-service
+          image: amitfegade121/movie-info-service:1.0
+          ports:
+            - containerPort: 8081
+
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: movie-info-service
+spec:
+  selector:
+    app: movie-info-service
+  type: ClusterIP
+  ports:
+    - port: 80
+      targetPort: 8081

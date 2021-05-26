@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: movie-catalog-service
+  labels:
+    app: movie-catalog-service
+spec:
+  selector:
+    matchLabels:
+      app: movie-catalog-service
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: movie-catalog-service
+    spec:
+      containers:
+        - name: movie-catalog-service
+          image: amitfegade121/movie-catalog-service:1.0
+          ports:
+            - containerPort: 8083
+              name: movie-catalog-service
+
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: movie-catalog-service
+spec:
+  selector:
+    app: movie-catalog-service
+  type: ClusterIP
+  ports:
+    - port: 80
+      targetPort: 8083

@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: user-rating-service
+  labels:
+    app: user-rating-service
+spec:
+  selector:
+    matchLabels:
+      app: user-rating-service
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: user-rating-service
+      containers:
+        - name: user-rating-service
+          image: amitfegade121/user-rating-service:1.0
+          ports:
+            - containerPort: 8082
+
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: user-rating-service
+spec:
+  selector:
+    app: user-rating-service
+  type: ClusterIP
+  ports:
+    - port: 80
+      targetPort: 8082
