@@ -25,7 +25,7 @@ spec:
 kind: Service
 apiVersion: v1
 metadata:
-  name: movie-catalog-service
+  name: movie-catalog-svc
 spec:
   selector:
     app: movie-catalog-service

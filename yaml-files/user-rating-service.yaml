@@ -23,7 +23,7 @@ spec:
 kind: Service
 apiVersion: v1
 metadata:
-  name: user-rating-service
+  name: user-rating-svc
 spec:
   selector:
     app: user-rating-service

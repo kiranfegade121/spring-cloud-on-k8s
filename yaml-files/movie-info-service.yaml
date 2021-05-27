@@ -24,7 +24,7 @@ spec:
 kind: Service
 apiVersion: v1
 metadata:
-  name: movie-info-service
+  name: movie-info-svc
 spec:
   selector:
     app: movie-info-service
